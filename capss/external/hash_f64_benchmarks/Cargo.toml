@@ -1,0 +1,56 @@
+####################   The CAPSS Framework (2025)   #####################
+##   This file has been modified in the context of the implementation  ##
+## of the CAPSS framework. Please refer to available the change log    ##
+## for the details.                                                    ##
+#########################################################################
+
+[package]
+name = "anemoi"
+description = "Implementation of cryptographic hash functions"
+authors = ["Toposware Developers <dev@toposware.com>"]
+homepage = "https://github.com/ToposWare/hash"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ToposWare/hash"
+version = "0.1.0"
+edition = "2021"
+readme = "README.md"
+categories = ["cryptography", "no-std"]
+keywords = ["cryptography", "crypto", "hash"]
+
+[dependencies]
+cheetah = { git = "https://github.com/ToposWare/cheetah.git", branch = "main", default-features = false, optional = true }
+group = { version = "0.11", default-features = false }
+num-bigint = "0.4.6"
+cty = "0.2.2"
+
+[features]
+f64 = ["cheetah"]
+default = ["std", "f64"]
+std = ["cheetah/std"]
+
+[dev-dependencies]
+criterion = "0.3"
+rand_core = "0.6"
+
+[lib]
+crate-type = ["staticlib"]
+
+[[bench]]
+name = "anemoi"
+harness = false
+required-features = ["f64"]
+
+[[bench]]
+name = "griffin"
+harness = false
+required-features = ["f64"]
+
+[[bench]]
+name = "poseidon"
+harness = false
+required-features = ["f64"]
+
+[[bench]]
+name = "rescue_prime"
+harness = false
+required-features = ["f64"]
